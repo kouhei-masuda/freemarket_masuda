@@ -29,32 +29,17 @@ ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin18]
 ## userテーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_profile_id|integer|foreign_key: true|
-|address_id|integer|foreign_key: true|
-|credit_card_id|integer|foreign_key: true|
-
-## Association
-- has_one :profile
-- has_one :credit_card
-- has_one :address
-
-## profileテーブル
-|Column|Type|Options|
-|------|----|-------|
 |nickname|string|null: false|
 |email|integer|null: false ,unique:true|
-|password|integer|null: false ,unique:true|
+|encrypted_password|integer|null: false ,unique:true|
 |first_name|string|null: false|
-|second_name|string|null: false|
-|first_name_kana|string|null: false|
-|second_name_kana|string|null: false|
-|birth_year|integer|null: false|
-|birth_month|integer|null: false|
-|birth_day|integer|null: false|
-|phone_number|integer|null: false|
+|first_name_reading|string|null: false|
+|last_name|string|null: false|
+|last_name_reading|string|null: false|
+|birth_day|date|null: false|
 
-## Association
-- belongs_to :user
+### Association
+- has_one :address
 
 ## Addressテーブル
 |Column|Type|Options|
@@ -64,6 +49,7 @@ ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin18]
 |address|string|null: false|
 |building|string|null: false|
 |prefecture|string|null: false|
+|phone_number|integer|null: false|
 
 ### Association
 - belongs_to :user
