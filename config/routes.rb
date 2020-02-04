@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: "items#index"
+
+  devise_scope :user do
+    ## ↓登録方法の選択ページ
+    get "users/select_registration", to: 'users/registrations#select', as: :select_registration
+     ## ↓電話番号認証ページ
+     get "users/confirm_phone", to: 'users/registrations#confirm_phone', as: :confirm_phone
+     ## ↓addressの登録ページ
+     get "users/regist_address", to: 'users/registrations#new_address', as: :new_regist_address
+     ## ↓addressのcreate
+     post "users/regist_address", to: 'users/registrations#create_address', as: :regist_address
+     ## ↓cardの登録ページ
+     get "users/regist_payment", to: 'users/registrations#new_payment', as: :new_regist_payment
+     ## ↓登録完了ページ
+     get "users/regist_completed", to: 'users/registrations#completed', as: :regist_completed
+  end
+  #root to: "items#index"
 
   # devise_for :users
 

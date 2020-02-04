@@ -6,7 +6,7 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.string :city , default: ""
       t.string :block_number , default: ""
       t.string :building , default: ""
-      t.reference :user , forign_key: true
+      t.references :user , forign_key: true
       t.timestamps
     end
   end
