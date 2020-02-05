@@ -30,14 +30,14 @@
         %span.required-true
           必須
         %br
-        = f.text_field :house_number, required: true, placeholder: "例）青山1-1-1"
+        = f.text_field :block_number, required: true, placeholder: "例）青山1-1-1"
     .input-field
       .input-field-main
         = f.label :building_name, "建物名"
         %span.required-false
           任意
         %br
-        = f.text_field :building_name, placeholder: "例）柳ビル103"
+        = f.text_field :building, placeholder: "例）柳ビル103"
     .input-field
       .input-field-main
         = f.label :phone_number, "電話番号"
