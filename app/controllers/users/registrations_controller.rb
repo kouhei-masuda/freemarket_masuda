@@ -11,10 +11,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new 
     super
   end
-  
+
   def create
     build_resource(sign_up_params)
-    @user.save
+    session["devise.regist_data"] = {user: @user.attributes}
+    session["devise.regist?data"][:encrypted_password] = nil
+    session["devise/regist_data"][:user][:password] = params[:user][:password]
+    redirect_to confirm_phone_path
   end
   
   def confirm_phone ## userのcreateに成功したらここに来る
