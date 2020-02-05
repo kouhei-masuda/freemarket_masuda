@@ -43,7 +43,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def new_payment ## addressのcreateに成功したらここに来る
     ## card登録済の時はリダイレクト
-    redirect_to regist_completed_path and return if current_user.card
+    #redirect_to regist_completed_path and return if current_user.card
     @progress = 4
     @card = Card.new
     render template: "cards/new"
