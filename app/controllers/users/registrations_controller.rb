@@ -17,6 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:encrypted_password] = nil
     session["devise.regist_data"][:user][:password] = params[:user][:password]
+    binding.pry
     redirect_to confirm_phone_path
   end
   
@@ -110,6 +111,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive account
 
   private
+
+  def address_params
+    params.require(:address).permit(:postal_code, :prefecture, :city, :block_number, :building, :phone_number)
+  end
 
   def sign_up_params
     params.require(:user).permit(:nickname, :avatar, :introduction, :first_name, :first_name_reading, :last_name, :last_name_reading, :birthday)
