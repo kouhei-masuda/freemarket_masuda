@@ -8,10 +8,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session.delete(:"devise.sns_auth") if session["devise.sns_auth"]
   end
 
-  def create
-    
+  def new 
+    super
   end
-
+  
+  def create
+    build_resource(sign_up_params)
+    @user.save
+  end
+  
   def confirm_phone ## userのcreateに成功したらここに来る
     @progress = 2
   end
@@ -52,9 +57,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  
 
   # GET /resource/edit
   # def edit
@@ -96,10 +99,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_sign_up_path_for(resource)
   #   super(resource)
   # end
+  
   def after_sign_up_path_for(resource)
     ## 電話番号認証ページのパスを指定
     confirm_phone_path
   end
   # The path used after sign up for inactive account
-  
+
+  private
+
+  def sign_up_params
+    params.require(:user).permit(:nickname, :avatar, :introduction, :first_name, :first_name_reading, :last_name, :last_name_reading, :birthday)
+  end
 end

@@ -70,3 +70,5 @@ gem 'erb2haml'
 gem 'font-awesome-sass'
 
 gem "font-awesome-rails"
+
+gem "pry-rails"

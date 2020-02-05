@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions'
+   }
 
   devise_scope :user do
     ## ↓登録方法の選択ページ
@@ -17,7 +20,7 @@ Rails.application.routes.draw do
   end
   #root to: "items#index"
 
-  # devise_for :users
+  
 
   resources :users, only: [:show] do
     collection do
