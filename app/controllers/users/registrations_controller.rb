@@ -15,8 +15,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
     session["devise.regist_data"] = {user: @user.attributes}
-    session["devise.regist?data"][:encrypted_password] = nil
-    session["devise/regist_data"][:user][:password] = params[:user][:password]
+    session["devise.regist_data"][:encrypted_password] = nil
+    session["devise.regist_data"][:user][:password] = params[:user][:password]
     redirect_to confirm_phone_path
   end
   
